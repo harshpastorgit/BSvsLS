@@ -11,33 +11,52 @@
   
 	<br />
     <div class="BS">
-    <p class="header">Binary Search Vs Linear Search</p>
-    <div id="array"></div>
-    <br /><br />
+    <p class="header"><span class="V">B</span>inary Search <span >V</span>s <span class="V">L</span>inear Search</p>
+    <div class="arrayWrapper"><div id="array"></div></div>
+    <br />
 
   </div>
+  <div  style="justify-content: center;"> <h2 id="text2"> Search</h2></div>
     <div id="text"></div>
-    </div>
-  </div>
+    <!-- <br/> -->
 
 <div style="text-align: center">
-  <label for="fname">
+  <label for="fname" >
     Number to be Searched:
   </label>
-  <input type="text" id="fname"
+  <input type="text" id="fname" 
       name="fname" />
   <br /><br />
   <div class="btns">
-  <button id="btn"
-      onclick="BinarySearch()">BinarySearch</button>
+    <button class="btn" id="ls" >LinearSearch</button>
+    <button class="btn" id="co">Compare</button>
+    <button class="btn" id="bs" >BinarySearch</button>
+  </div>
+  
+  <!-- searchedcol -->
   <br />
-  <button id="btn"
-      onclick="LinearSearch()">LinearSearch</button>
-    </div>
-  <br />
-  <br />
+  
   <div id="text"></div>
   </div>
+  <div class="tableWrapper" style="text-align: center; ">
+    <span style=" ;margin-bottom: 16px;" > <h2 id="text2">Steps comparison table</h2></span>
+  <div class="compTable">
+    
+    <div class="searchedcol">
+    <div class="searched ccol firstRow">Searched</div>
+    </div>
+
+    <div class="bscol">
+    <div class="bsTable ccol firstRow">Binary Search</div>
+    </div>
+    <div class="lscol">
+    <div class="lsTable ccol firstRow">Linear Search</div>
+    </div>
+    <div class="pcol">
+    <div class="present ccol firstRow">Present</div>
+    </div>
+</div>
+</div>
 
 	<script src="script.js"></script>
 </body>
