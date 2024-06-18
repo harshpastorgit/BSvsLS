@@ -1,173 +1,77 @@
-// let container = document.getElementById("array");
-// let arr = [];
 
-// for (let i = 0; i < 20; i++) {
-// 	let val = Number(Math.ceil(Math.random() * 100));
-// 	arr.push(val);
-// }
-
-// arr.sort(function (a, b) {
-// 	return a - b;
-// });
-// function Search(){
-// 	BinarySearch()
-// 	LinearSearch()
-// }
-// function generatearray() {
-
-// for (let i = 0; i < 20; i++) {
-// 	let value = arr[i];
-// 	let array_ele = document.createElement("div");
-
-// 	array_ele.classList.add("block");
-
-// 	// Adding style to div
-// 	array_ele.style.height = `${value * 3}px`;
-// 	array_ele.style.transform = `translate(${i * 30}px)`;
-
-// 	// Creating label element for displaying
-// 	// size of particular block
-// 	let array_ele_label = document.createElement("label");
-// 	array_ele_label.classList.add("block_id");
-// 	array_ele_label.innerText = value;
-// 	array_ele.appendChild(array_ele_label);
-// 	container.appendChild(array_ele);
-// }
-// }
-
-// async function BinarySearch(delay = 1000) {
-// let blocks = document.querySelectorAll(".block");
-// let output = document.getElementById("text");
-// let num = document.getElementById("fname").value;
-// for (let i = 0; i < blocks.length; i += 1) {
-// 	blocks[i].style.backgroundColor = "#6b5b95";
-// }
-
-// output.innerText = "";
-
-// let start = 0;
-// let end = 19;
-// let flag = 0;
-// while (start <= end) {
-// 	let mid = Math.floor((start + end) / 2);
-// 	blocks[mid].style.backgroundColor = "#FF4949";
-// 	let value = Number(blocks[mid].childNodes[0].innerHTML);
-// 	await new Promise((resolve) =>
-// 	setTimeout(() => {
-// 		resolve();
-// 	}, delay)
-// 	);
-
-// 	if (value == num) {
-// 	output.innerText = "Element Found";
-// 	blocks[mid].style.backgroundColor = "#13CE66";
-// 	flag = 1;
-// 	break;
-// 	}
-// 	if (value > num) {
-// 	end = mid - 1;
-// 	blocks[mid].style.backgroundColor = "#6b5b95";
-// 	} else {
-// 	start = mid + 1;
-// 	blocks[mid].style.backgroundColor = "#6b5b95";
-// 	}
-// }
-// if (flag === 0) {
-// 	output.innerText = "Element Not Found";
-// }
-// }
-// async function LinearSearch(delay = 1000) {
-// let blocks = document.querySelectorAll(".block");
-// let output = document.getElementById("text");
-// let num = document.getElementById("fname").value;
-// for (let i = 0; i < blocks.length; i += 1) {
-// 	blocks[i].style.backgroundColor = "#6b5b95";
-// }
-
-// output.innerText = "";
-
-// let i = 0;
-// let end = 19;
-// let flag = 0;
-// while (i<20) {
-	
-// 	blocks[i].style.backgroundColor = "#FF4949";
-// 	let value = Number(blocks[i].childNodes[0].innerHTML);
-
-// 	await new Promise((resolve) =>
-// 	setTimeout(() => {
-// 		resolve();
-// 	}, delay)
-// 	);
-
-// 	if (value == num) {
-// 	output.innerText = "Element Found";
-// 	blocks[i].style.backgroundColor = "#13CE66";
-// 	flag = 1;
-// 	break;
-// 	}
-// 	if (value > num) {
-// 		flag=0;
-// 		break;
-	
-// 	}
-// 	i++;
-// }
-// if (flag === 0) {
-// 	output.innerText = "Element Not Found";
-// }
-// }
-// generatearray();
-
-
-
-
-let container = document.getElementById("array");
+let tableContent=document.getElementsByClassName("compTable");
 let arr = [];
 
-// Function to generate the array of blocks
-function generatearray() {
-    container.innerHTML = ""; // Clear the previous array
-    arr = []; // Reset the array
+let co=document.getElementById("co")
+let ls=document.getElementById("ls")
+let bs=document.getElementById("bs")
 
-    // Create 20 blocks with random values and add to the array
+co.addEventListener("click",
+    function(e){
+        e.preventDefault();
+        CompareSearch();
+    }
+    ,true)
+ls.addEventListener("click",
+    function(e){
+        e.preventDefault();
+        LinearSearch()
+    }
+    ,true)
+bs.addEventListener("click",
+    function(e){
+        e.preventDefault();
+        BinarySearch()
+    }
+    ,true)
+            
+    let visualArray = document.getElementById("array");
+            function generatearray() {
+    visualArray.innerHTML = ""; 
+    arr = []; 
     for (let i = 0; i < 20; i++) {
         let value = Number(Math.ceil(Math.random() * 100));
         arr.push(value);
 
         
     }
-
-    // Sort the array for binary search
     arr.sort(function (a, b) {
         return a - b;
     });
 	for (let i = 0; i < 20; i++) {
 		let value=arr[i]
-		let array_ele = document.createElement("div");
-		// array_ele.style.backgroundColor="#212121"
-        array_ele.classList.add("block");
-        array_ele.style.height = `${value * 3}px`;
-        array_ele.style.transform = `translate(${i * 30}px)`;
+		let valueOfArray = document.createElement("div");
+        valueOfArray.classList.add("block");
+        valueOfArray.style.height = `${value * 3.5}px`;
+        valueOfArray.style.transform = `translate(${i * 35}px)`;
 
-        let array_ele_label = document.createElement("label");
-        array_ele_label.classList.add("block_id");
-        array_ele_label.innerText = value;
+        let arrayLabel = document.createElement("label");
+        arrayLabel.classList.add("block_id");
+        arrayLabel.innerText = value;
 
-        array_ele.appendChild(array_ele_label);
-        container.appendChild(array_ele);
+        valueOfArray.appendChild(arrayLabel);
+        visualArray.appendChild(valueOfArray);
 
 	}
 
+    
 }
 
-// Function to perform Binary Search
-async function BinarySearch(delay = 1000) {
-    let blocks = document.querySelectorAll(".block");
-    let output = document.getElementById("text");
-    let num = Number(document.getElementById("fname").value);
 
-    output.innerText = "";
+
+    
+
+let present=0
+async function BinarySearch(delay = 1000) {
+    present=0;
+    console.log('bs executing')
+	let num = Number(document.getElementById("fname").value);
+    let blocks = document.querySelectorAll(".block");
+    let displayInfo = document.getElementById("text");
+    let typeofsearch = document.getElementById("text2");
+    typeofsearch.innerText='Binary Search'
+
+    displayInfo.innerText = "";
     let count=0;
     let start = 0;
     let end = arr.length - 1;
@@ -175,11 +79,11 @@ async function BinarySearch(delay = 1000) {
 
     while (start <= end) {
 		count++;
-        // Update colors of blocks
+        // updateColors(blocks, "#bfb716");
         updateColors(blocks, "#6b5b95");
 
         let mid = Math.floor((start + end) / 2);
-        blocks[mid].style.backgroundColor = "#FF4949";
+        blocks[mid].style.backgroundColor = "#bfb716";
 
         await new Promise((resolve) =>
             setTimeout(() => {
@@ -188,7 +92,8 @@ async function BinarySearch(delay = 1000) {
         );
 
         if (arr[mid] == num) {
-            output.innerText = `Element Found after ${count} searchs`;
+            present=1;
+            displayInfo.innerText = `Element Found after ${count} searchs`;
             blocks[mid].style.backgroundColor = "#13CE66";
             flag = 1;
             break;
@@ -200,26 +105,33 @@ async function BinarySearch(delay = 1000) {
     }
 
     if (flag === 0) {
-        output.innerText = "Element Not Found";
+        present=0
+        displayInfo.innerText = `Element not present. Detected in ${count} passes`;
+        return count;
     }
+    return count;
+	
 }
-
-// Function to perform Linear Search
+let wt=0
 async function LinearSearch(delay = 1000) {
+    present=0;
+    console.log('ls executing')
     let blocks = document.querySelectorAll(".block");
-    let output = document.getElementById("text");
-    let num = Number(document.getElementById("fname").value);
-
-    output.innerText = "";
+    let displayInfo = document.getElementById("text");
+	
+	let num = Number(document.getElementById("fname").value);
+    let typeofsearch = document.getElementById("text2");
+    typeofsearch.innerText='Linear Search'
+    displayInfo.innerText = "";
     
     let flag = 0;
+	let count=20;
 
     for (let i = 0; i < blocks.length; i++) {
-        // Update colors of blocks
         updateColors(blocks, "#6b5b95");
 
-        blocks[i].style.backgroundColor = "#FF4949";
-
+        blocks[i].style.backgroundColor = "#bfb716";
+		wt+=delay
         await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
@@ -227,27 +139,194 @@ async function LinearSearch(delay = 1000) {
         );
 
         if (arr[i] == num) {
-            output.innerText = `Element Found after ${i} searchs`;
+            displayInfo.innerText = `Element Found after ${i+1} searchs`;
             blocks[i].style.backgroundColor = "#13CE66";
             flag = 1;
+			count=1+i;
+            present=1;
             break;
         }
 		if(arr[i]>num){
+            present=0;
+			count=i+1;
 			break;
 		}
     }
 
     if (flag === 0) {
-        output.innerText = "Element Not Found";
+        displayInfo.innerText = `Element Not Found. Detected after ${count} searches`
     }
+    return count;
+	
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+async function CompareSearch(delay=500){
+    
+    let s= Number(document.getElementById("fname").value);
+    let ls=await LinearSearch();
+    // await new Promise((resolve)=>{
+    //     setTimeout(()=>{
+    //         resolve;
+    //     },1000);
+    //     // }
+    // })
+    await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, delay)
+    );
+    let bs=await BinarySearch();
+    updateTable(ls,bs,s);    
+	
 }
 
-// Helper function to update colors of blocks
 function updateColors(blocks, color) {
     for (let i = 0; i < blocks.length; i++) {
         blocks[i].style.backgroundColor = color;
     }
 }
 
-// Initially generate the array
+let searched=document.getElementsByClassName("searchedcol")
+// console.log(searched[0])
+let lscol=document.getElementsByClassName("lscol")
+let bscol=document.getElementsByClassName("bscol")
+let pcol=document.getElementsByClassName("pcol")
+// function updateTable(ls,bs,s){
+//     // visualArray.appendChild(valueOfArray);
+//     let newSearchSe=document.createElement("div");
+//     searched.appendChild(newSearchSe);
+//     newSearchSe.innerHTML=s
+
+
+//     let newSearchls=document.createElement("div");
+//     lscol.appendChild(newSearchls);
+//     newSearchls.innerHTML=ls
+
+//     let newSearchbs=document.createElement("div");
+//     bscol.appendChild(newSearchbs);
+//     newSearchbs.innerHTML=bs
+
+//     let newSearchp=document.createElement("div");
+//     pcol.appendChild(newSearchp);
+//     newSearchp.innerHTML=(bs==-1)?"no":"yes";
+// }
+
+async function updateTable(ls, bs, s) {
+    let newSearchSe = document.createElement("div");
+    newSearchSe.classList.add('tableCell');
+
+    searched[0].appendChild(newSearchSe);
+    newSearchSe.innerHTML = s;
+
+    let newSearchls = document.createElement("div");
+    newSearchls.classList.add('tableCell');
+
+    lscol[0].appendChild(newSearchls);
+    newSearchls.innerHTML = ls;
+
+    let newSearchbs = document.createElement("div");
+    newSearchbs.classList.add('tableCell');
+
+    bscol[0].appendChild(newSearchbs);
+    newSearchbs.innerHTML = bs;
+
+    let newSearchp = document.createElement("div");
+    newSearchp.classList.add('tableCell');
+
+    pcol[0].appendChild(newSearchp);
+    newSearchp.innerHTML = (present==1)?"Yes":"No";
+
+    document.getElementsByClassName("tableWrapper")[0].style.visibility='visible';
+    present=0;
+}
 generatearray();
+
+// async function CompareSearch(delay=500){
+//     let blocks = document.querySelectorAll(".block");
+//     let displayInfo = document.getElementById("text");
+//     let type = document.getElementById("text2");
+// 	let num = Number(document.getElementById("fname").value);
+
+//     displayInfo.innerText = "";
+//     type.innerHTML="<h2>Linear search</h2>"
+//     let flag = 0;
+// 	let count=20;
+
+//     for (let i = 0; i < blocks.length; i++) {
+//         updateColors(blocks, "#6b5b95");
+
+//         blocks[i].style.backgroundColor = "#FF4949";
+// 		wt+=delay
+//         await new Promise((resolve) =>
+//             setTimeout(() => {
+//                 resolve();
+//             }, delay)
+//         );
+
+//         if (arr[i] == num) {
+//             displayInfo.innerText = `Element Found after ${i} searchs`;
+//             blocks[i].style.backgroundColor = "#13CE66";
+//             flag = 1;
+// 			waiting=1;
+//             break;
+//         }
+// 		if(arr[i]>num){
+// 			count=i;
+// 			break;
+// 		}
+//     }
+
+//     if (flag === 0) {
+//         displayInfo.innerText = `Element Not Found. Detected after ${count} searches`
+//     }
+    
+//     await new Promise((resolve)=>
+//         setTimeout(()=>{
+//         resolve()},1800)
+        
+//     )
+//     type.innerHTML="<h2>Binary search</h2>"
+//     displayInfo.innerText = "";
+//     count=0;
+//     let start = 0;
+//     let end = arr.length - 1;
+//     flag = 0;
+
+//     while (start <= end) {
+// 		count++;
+//         updateColors(blocks, "#6b5b95");
+
+//         let mid = Math.floor((start + end) / 2);
+//         blocks[mid].style.backgroundColor = "#FF4949";
+
+//         await new Promise((resolve) =>
+//             setTimeout(() => {
+//                 resolve();
+//             }, delay)
+//         );
+
+//         if (arr[mid] == num) {
+//             displayInfo.innerText = `Element Found after ${count} searchs`;
+//             blocks[mid].style.backgroundColor = "#13CE66";
+//             flag = 1;
+//             waiting=1;
+//             break;
+//         } else if (arr[mid] > num) {
+//             end = mid - 1;
+//         } else {
+//             start = mid + 1;
+//         }
+//     }
+
+//     if (flag === 0) {
+        
+//         displayInfo.innerText = `Element Not Found. Detected after ${count}searches`;
+//         return -1;
+//     }
+//     return count;
+//     // updateTable();
+    
+    
+// }
